@@ -17,28 +17,29 @@ function dbClose($conn)
 	mysqli_close($conn);
 }
 
-function dbSelect($table, $column="*", $criteria="", $clause=""){
+function dbSelect($table, $column, $criteria="", $clause=""){
 	if (empty($table)) 
 	{
 		return false;
 	}
-	
 	$sql = "select " . $column . " from " . $table;
+
 	if (!empty($criteria)){
 		$sql .= " where " . $criteria;
 	}
 	if (!empty($clause)){
 		$sql .= " " . $clause;
 	}
+	// $sql = "select * from tb_login";
+	// echo $sql;
 	$conn = dbConn();
-	$result = mysqli_query($conn,$sql);
-	dbClose($conn);
-	if (!$result) {
+	$row = mysqli_query($conn, $sql);
+	if (!$row) {
 		echo("Error description: " . mysqli_error($conn));
 		return false;
 	}
-	return $result;
-	
+	dbClose($conn);
+	return $row;
 }	
 
 function dbInsert($table, $data=array()){

@@ -1149,11 +1149,11 @@
 
                             <li>
 
-                                <a href="productItem.php">VALUE OF THE DAY</a>
+                                <a href="index.php?page=productItem">VALUE OF THE DAY</a>
                             </li>
                             <li>
 
-                                <a href="productItem.php">GIFT CARDS</a>
+                                <a href="index.php?page=productItem">GIFT CARDS</a>
                             </li>
                         </ul>
                         <!--====== End - List ======-->

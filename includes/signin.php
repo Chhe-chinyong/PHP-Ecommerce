@@ -12,13 +12,29 @@
           if($rnum > 0)
           {
               $_SESSION['isValid'] = true;
+              $_SESSION['username'] = $username;
+              
+                //  set cookie 
+              if (isset($_POST['remember']))
+              {
+                  setcookie('username', $username, time()+86400, "/", "", 0);
+                  setcookie("pw", md5($password), time() + 86400, "/", "" , 0);
+                  
+              }
+            // //   clear cookie
+              else 
+              {
+                  setcookie('username', $username, time()-86400, "/", "", 0);
+                  setcookie("pw", md5($password), time() - 86400, "/", "" , 0);
+              }
+             
               header("location: admin");
-              exit; 
+              exit(); 
           }
           else 
           {
             $message = "Invalid username or password";
-            // exit();
+            
           }
       }
       ob_end_flush();
@@ -109,7 +125,7 @@
 
                                             <label class="gl-label" for="login-password">PASSWORD *</label>
 
-                                            <input class="input-text input-text--primary-style" type="text"
+                                            <input class="input-text input-text--primary-style" type="password"
                                                 id="login-password" placeholder="Enter Password" name="password">
                                         </div>
                                         <div class="gl-inline">
@@ -125,7 +141,7 @@
                                             <!--====== Check Box ======-->
                                             <div class="check-box">
 
-                                                <input type="checkbox" id="remember-me">
+                                                <input type="checkbox" id="remember-me" name="remember">
                                                 <div class="check-box__state check-box__state--primary">
 
                                                     <label class="check-box__label" for="remember-me">Remember

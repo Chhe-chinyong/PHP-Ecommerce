@@ -14,7 +14,32 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="js/demo/datatables-demo.js"></script>
+
+  <!-- Table -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"></script>
+  <script src="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css"></script>
+
   <!-- 
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+
+  <script src="js/sb-admin-2.min.js"></script>
+
+
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+
+  <script src="js/demo/datatables-demo.js"></script> -->
+
 
   <?php
 
@@ -55,4 +80,4 @@
 
 // }
 
-?> -->
+?>
