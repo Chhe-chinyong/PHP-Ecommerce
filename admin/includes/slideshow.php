@@ -20,7 +20,8 @@
             
                 dbDelete('tb_slideshow',"sh_id=$sh_id");
                 unlink("../images/slider/" . $image);
-                // header("location: index.php?p=slideshow");
+                
+                header("location: index.php?p=slideshow");
                 break;
         }
     }

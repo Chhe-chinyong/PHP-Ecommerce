@@ -1,3 +1,48 @@
+<?php 
+  
+    include_once "../includes/config.php";
+    $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);	
+	if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		exit();
+	}
+	
+    // $visitor_ip = $_SERVER['REMOTE_ADDR'];
+    $visitor_ip = '54:52:2141ssss';
+
+    // echo $visitor_ip;
+    // Checking if visitor is unique 
+    
+    $query = "select * from counter_table WHERE ip_address = '$visitor_ip'";
+    $result = mysqli_query($conn, $query);
+  
+    $query1 = "select count(id) from counter_table ";
+    $result1 = mysqli_query($conn, $query1);
+    // checking query error 
+    if(!$result)
+    {
+        die("Retriving Query Error <br>". $query);
+    }
+
+        // $total_visitor = mysqli_num_rows($result);
+        $total_visitor = mysqli_fetch_array($result1, MYSQLI_NUM)[0];
+        $total = mysqli_fetch_array($result, MYSQLI_NUM)[0];
+        echo $total_visitor;
+        if($total < 1)
+         {
+             $query = "INSERT INTO counter_table (ip_address) VALUES ('$visitor_ip')";
+             $result = mysqli_query($conn, $query);
+
+        if(!$result)
+         {
+        die("Retriving Query Error <br>". $query);
+         }
+    }
+    mysqli_close($conn);
+
+
+?>
+
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -83,9 +128,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">VISITOR COUNTER
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $total_visitor;?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>

@@ -2,7 +2,7 @@
 include "./includes/protectRoute.php";
 isValid();
 include('includes/header.php'); 
-include('includes/navbar.php'); 
+include_once('includes/navbar.php'); 
 ?>
 <!DOCTYPE html>
 
