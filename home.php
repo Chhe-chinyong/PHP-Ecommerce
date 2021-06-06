@@ -2,7 +2,47 @@
 <html class="no-js" lang="en">
 
 <head>
-    <?php include("./includes/head.php"); ?>
+    <?php include("./includes/head.php"); 
+     $conn = mysqli_connect('127.0.0.1', 'root','', 'rupp');	
+	if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		exit();
+	}
+	
+    // $visitor_ip = $_SERVER['REMOTE_ADDR'];
+    $visitor_ip = '54:52:2sadsadss';
+
+    // echo $visitor_ip;
+    // Checking if visitor is unique 
+    
+    $query = "select * from counter_table WHERE ip_address = '$visitor_ip'";
+    $result = mysqli_query($conn, $query);
+  
+    $query1 = "select count(id) from counter_table ";
+    $result1 = mysqli_query($conn, $query1);
+    // checking query error 
+    if(!$result)
+    {
+        die("Retriving Query Error <br>". $query);
+    }
+
+        // $total_visitor = mysqli_num_rows($result);
+        $total_visitor = mysqli_fetch_array($result1, MYSQLI_NUM)[0];
+        $total = mysqli_fetch_array($result, MYSQLI_NUM)[0];
+        echo $total_visitor;
+        if($total < 1)
+         {
+             $query = "INSERT INTO counter_table (ip_address) VALUES ('$visitor_ip')";
+             $result = mysqli_query($conn, $query);
+
+        if(!$result)
+         {
+        die("Retriving Query Error <br>". $query);
+         }
+    }
+    mysqli_close($conn);
+    
+    ?>
 </head>
 
 <body class="config">

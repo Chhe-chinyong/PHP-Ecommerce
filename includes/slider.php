@@ -27,8 +27,12 @@
                             <span class="content-span-4 u-c-secondary">Starting At
 
                                 <span class="u-c-brand"><?=$row[4]?></span></span>
+                            -->
+                            <!-- <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html"><?=$row[4]?></a>   -->
 
-                            <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html"><?=$row[5]?></a>  -->
+                            <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html"><?=$row[5]?></a>
+
+
                         </div>
                         <?php
                        }

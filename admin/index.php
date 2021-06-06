@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include "./includes/protectRoute.php";
 isValid();
 include('includes/header.php'); 
@@ -17,6 +18,10 @@ include_once('includes/navbar.php');
             case "slideshow":
                 $page = 'includes/slideshow.php';
                 break;
+
+                case "slideshowform":
+                    $page = 'includes/slideshowform.php';
+                    break;
         }
     }
 

@@ -2,7 +2,9 @@
 <html class="no-js" lang="en">
 
 <head>
-    <?php include("./includes/head.php"); ?>
+
+    <?php ob_start(); 
+    include("./includes/head.php"); ?>
 </head>
 <?php 
     $loadpage = "home.php";

@@ -66,11 +66,21 @@ function dbUpdate($table, $data=array(), $criteria=""){
 	{
 			return false;
 	}
-	$fields = implode('=,',array_keys($data));
-	$values = implode("','",array_values($data));
+	// $fields = implode('=,',array_keys($data));
+	// $values = implode("','",array_values($data));
 	
-	$sql = "update " . $table ." set " . $fields;
-	$sql .= " = " . $values . " where " .$criteria;
+	// $sql = "update " . $table ." set " . $fields;
+	// $sql .= " = " . $values . " where " .$criteria;
+
+	
+	$sql = "update " . $table ." set " ;
+	foreach ($data as $field => $value)
+	{
+		$sql .= $field . " = '" . $value . "', ";
+	}
+	$sql = substr ($sql, 0, strlen($sql) -2);
+	$sql .= " where " . $criteria;
+	
 	$conn = dbConn();
 	$result = mysqli_query($conn,$sql);
 	dbClose($conn);
