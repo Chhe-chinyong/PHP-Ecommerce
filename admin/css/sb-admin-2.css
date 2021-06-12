@@ -70,6 +70,9 @@ nav,
 section {
   display: block;
 }
+label {
+  display: none;
+}
 
 body {
   margin: 0;
@@ -82,6 +85,13 @@ body {
   color: #858796;
   text-align: left;
   background-color: #fff;
+}
+
+#dataTable_filter {
+  display: none;
+}
+#dataTable_length {
+  display: none;
 }
 
 [tabindex="-1"]:focus {
@@ -170,9 +180,6 @@ small {
   padding: 0 0.2rem;
 }
 
-#dataTable_length {
-  visibility: hidden;
-}
 sub,
 sup {
   position: relative;

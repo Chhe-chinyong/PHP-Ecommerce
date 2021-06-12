@@ -4,9 +4,11 @@
 <head>
 
     <?php ob_start(); 
-    include("./includes/head.php"); ?>
+    include("./includes/head.php");
+    ?>
 </head>
 <?php 
+
     $loadpage = "home.php";
     if(isset($_GET['page']))
     {
@@ -353,7 +355,7 @@
                             <div class="col-lg-6 new-l__col-2">
                                 <div class="new-l__section u-s-m-t-30">
                                     <div class="u-s-m-b-8 new-l--center">
-                                        <h3 class="new-l__h3">Newsletter</h3>
+                                        <h3 class="new-l__h3">Newsletter8</h3>
                                     </div>
                                     <div class="u-s-m-b-30 new-l--center">
                                         <p class="new-l__p1">Sign up for emails to get the scoop on new arrivals,
@@ -362,7 +364,7 @@
                                     <form class="new-l__form">
                                         <div class="u-s-m-b-15">
 
-                                            <input class="news-l__input" type="text" placeholder="E-mail Address">
+                                            <input class="news-l__input" type="text" name="email" placeholder="E-mail">
                                         </div>
                                         <div class="u-s-m-b-15">
 

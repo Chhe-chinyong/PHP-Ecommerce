@@ -1,3 +1,47 @@
+<?php
+    ob_start();
+
+    $conn = mysqli_connect('127.0.0.1', 'root','', 'rupp');	
+	if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		exit();
+	}
+	
+ 
+    
+    $query = "SELECT * FROM tb_logo WHERE logo_id=(SELECT MAX(logo_id) FROM tb_logo);";
+    $result = mysqli_query($conn, $query);
+  
+    if (!$result){
+        die ("Database connection failed!");
+  }
+    // checking query error 
+    // if(!$result)
+    // {
+    //     die("Retriving Query Error <br>". $query);
+    //     exit();
+    // }
+
+    // header('location: index.php?p=home');
+
+     
+    //     $total = mysqli_fetch_array($result, MYSQLI_NUM)[0];
+     
+    //     if($total < 1)
+    //      {
+    //          $query = "INSERT INTO counter_table (ip_address) VALUES ('$visitor_ip')";
+    //          $result = mysqli_query($conn, $query);
+
+    //     if(!$result)
+    //      {
+    //     die("Retriving Query Error <br>". $query);
+    //      }
+    // }
+    mysqli_close($conn);
+    
+?>
+
+
 <header class="header--style-1">
     <!--====== Nav 1 ======-->
     <nav class="primary-nav primary-nav-wrapper--border">
@@ -9,9 +53,27 @@
                 <!--====== Main Logo ======-->
 
                 <a class="main-logo" href="./index.php">
-                    <h2>Tinh Lok</h2>
-                    <!-- <img src="images/logo/logo-1.png" alt=""> -->
+                    <!-- <h2>Tinh Lok</h2> -->
+                    <?php
+                        $i=0;
+                       while($row=mysqli_fetch_row($result))
+                        {
+                     
+                            
+                    ?>
+                    <div>
+                    <img src='images/logo/<?=$row[1]?>' alt="logo" style="width:45px">
+                    
+                    </div>
+             
+
+                    <?php
+                        $i++;
+                       }
+                        ?>
                 </a>
+
+
                 <!--====== End - Main Logo ======-->
 
 

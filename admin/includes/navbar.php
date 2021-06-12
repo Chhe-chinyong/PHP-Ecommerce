@@ -1,12 +1,55 @@
+<?php
+    ob_start();
+
+    // $conn = mysqli_connect('127.0.0.1', 'root','', 'rupp');	
+	// if (mysqli_connect_errno()) {
+    //     echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	// 	exit();
+	// }
+	
+ 
+    
+    // $query = "SELECT * FROM tb_logo WHERE logo_id=(SELECT MAX(logo_id) FROM tb_logo);";
+    // $result = mysqli_query($conn, $query);
+  
+//     if (!$result){
+//         die ("Database connection failed!");
+//   }
+ 
+//     mysqli_close($conn);
+$result = dbSelect('tb_logo', "*", "logo_id=(SELECT MAX(logo_id) FROM tb_logo)", "");
+
+
+    
+?>
+
+   
    <!-- Sidebar -->
    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
        <!-- Sidebar - Brand -->
        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-           <div class="sidebar-brand-icon rotate-n-15">
-               <i class="fas fa-laugh-wink"></i>
+           <div class="sidebar-brand-icon ">
+               <!-- <i class="fas fa-laugh-wink"></i> -->
+               <!-- <img src="../images/logo/1623483082134741890660c462ca7954d.jpg"></img> -->
+               <?php
+                    $i=0;
+                     while($row=mysqli_fetch_row($result))
+                     {        
+                    ?>
+               <img src="../images/logo/<?=$row[1]?>" style="width:45px"></img> 
+
            </div>
-           <div class="sidebar-brand-text mx-3">FUNDA <sup>WEB IT</sup></div>
+         
+           <div class="sidebar-brand-text mx-3"><span><?=$row[3]?></span></div>
+
+           <?php
+                        $i++;
+                       }
+                        ?>
+          
+           <!-- <div class="sidebar-brand-text mx-3">FUNDA <sup>WEB IT</sup></div> -->
+           <!-- <div class="sidebar-brand-text mx-3"><img src="../images/logo/1623483082134741890660c462ca7954d.jpg"></img></div> -->
        </a>
 
        <!-- Divider -->
@@ -24,6 +67,20 @@
            <a class="nav-link" href="index.php?p=slideshow">
                <i class="fab fa-slideshare"></i>
                <span>SlideShow</span></a>
+       </li>
+
+       <!-- Product -->
+       <li class="nav-item active">
+           <a class="nav-link" href="index.php?p=product">
+               <i class="fab fa-product-hunt"></i>
+               <span>Product</span></a>
+       </li>
+
+       <!-- Product -->
+       <li class="nav-item active">
+           <a class="nav-link" href="index.php?p=logo">
+               <i class="fab fa-product-hunt"></i>
+               <span>Logo</span></a>
        </li>
 
        <!-- Divider -->

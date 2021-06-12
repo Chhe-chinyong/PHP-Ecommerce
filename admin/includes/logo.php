@@ -1,22 +1,19 @@
 <?php
-
-    $title = "";
-    $subtitle = "";
-    $description = "";
-    $link = "";
-    $toptitle = "";
+    $logo_header = "";
+    $link ="";
+   
     $endisble = 0;
     $but = 'submit';
     $action = 5;
     $imagerequired = 1;
     if((isset($_GET['action']) && $_GET['action'] == '5'))
     {
-        $title = $_POST['txt_title'];
-        $subtitle = $_POST['txt_subtitle'];
-        $description = $_POST['txt_description'];
+        $logo_header = $_POST['txt_header'];
         $link = $_POST['txt_link'];
-        $toptitle = $_POST['txt_toptitle'];
+        
         $endisble = 0;
+        
+        
         if(isset($_POST['chk_endisable']))
         {
             $endisble = 1;
@@ -27,20 +24,20 @@
             echo 'hi';
 
         
-        $rows = dbSelect('tb_slideshow', "*", "", "order by sh_order desc limit 1");
+        $rows = dbSelect('tb_logo', "*", "", "");
         $row = mysqli_fetch_assoc($rows);
-        $order = $row['sh_order'] + 1;
+        // $order = $row['sh_order'] + 1;
         $image_name = time() . uniqid(rand()) . ".jpg";
-        $image_path = "../images/slider/" . $image_name;
+        $image_path = "../images/logo/" . $image_name;
         echo 'jol';
         if(move_uploaded_file($filename, $image_path))
         {
             echo 'jol';
-            $image_thumbnail = image_resizeJPG($image_path, 100, 100);
-            imagejpeg($image_thumbnail, "../images/slider/thumbnail/" . $image_name);
-            $data = ['title' => $title , 'subtitle' => $subtitle, 'text' => $description , 'link' => $link , 'image' => $image_name , 'toptitle'=> $toptitle, 'sh_order' => $order, 'active' => $endisble];
-            dbInsert('tb_slideshow', $data);
-            header('location: index.php?p=slideshow');
+            $image_thumbnail = image_resize($image_path, 75,75);
+            imagejpeg($image_thumbnail, "../images/logo/" . $image_name);
+            $data = ['logo_header' => $logo_header , 'logo_link' => $link, 'logo_img' => $image_name];
+            dbInsert('tb_logo', $data);
+            header('location: index.php?p=logo');
         }
     }
    
@@ -52,7 +49,7 @@
         $subtitle = $_POST['txt_subtitle'];
         $description = $_POST['txt_description'];
         $link = $_POST['txt_link'];
-        $toptitle = $_POST['txt_toptitle'];
+        // $toptitle = $_POST['txt_toptitle'];
         $endisble = 0;
         $image_name = "";
         if(isset($_POST['chk_endisable']))
@@ -74,7 +71,7 @@
         if(move_uploaded_file($filename, $image_path))
         {
             echo 'jol';
-            $image_thumbnail = image_resizeJPG($image_path, 100, 100);
+            $image_thumbnail = image_resize($image_path, 75, 100);
             imagejpeg($image_thumbnail, "../images/slider/thumbnail/" . $image_name);
             unlink('../images/slider/thumbnail/' . $oldimgname);
             unlink('../images/slider/' . $oldimgname);
@@ -122,28 +119,14 @@
 ?>
 
 
-<form class="container" action="index.php?p=slideshowform&action=<?=$action?>" enctype="multipart/form-data"
-    method="POST">
-    <div class="form-group">
-        <h2>Slideshow</h2>
-        <input type="text" name="txt_title" class="form-control" value="<?=$title?>" id="exampleInputEmail1"
-            placeholder="Title" required>
-    </div>
+<form class="container" action="index.php?p=logo&action=<?=$action?>" enctype="multipart/form-data" method="POST">
+
     <div class="form-group">
 
-        <input type="text" name="txt_subtitle" class="form-control" id="exampleInputPassword1" placeholder="subTitle"
-            value="<?=$subtitle?>" required>
+        <input type="text" class="form-control" value="<?=$logo_header?>" name="txt_header" id="exampleInputPassword1"
+            placeholder="logo header">
     </div>
-    <div class="form-group">
 
-        <textarea class="form-control" name="txt_description" id="exampleFormControlTextarea1" rows="3"
-            placeholder="Description" required> <?=$description?></textarea>
-    </div>
-    <div class="form-group">
-
-        <input type="text" class="form-control" name="txt_toptitle" id="exampleInputPassword1" placeholder="TopTitle"
-            required value="<?=$toptitle?>">
-    </div>
     <div class="form-group">
 
         <input type="text" class="form-control" value="<?=$link?>" name="txt_link" id="exampleInputPassword1"

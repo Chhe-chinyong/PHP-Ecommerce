@@ -22,6 +22,16 @@ include_once('includes/navbar.php');
                 case "slideshowform":
                     $page = 'includes/slideshowform.php';
                     break;
+                    case "product":
+                        $page = 'includes/product.php';
+                        break;
+                    case "productform":
+                        $page = 'includes/productform.php';
+                        break;
+
+                        case "logo":
+                            $page = 'includes/logo.php';
+                            break;
         }
     }
 

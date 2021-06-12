@@ -1,10 +1,10 @@
 <?php
-
     $title = "";
-    $subtitle = "";
+    $price = "";
     $description = "";
     $link = "";
-    $toptitle = "";
+    $quantity = "";
+    $discount = "";
     $endisble = 0;
     $but = 'submit';
     $action = 5;
@@ -12,11 +12,14 @@
     if((isset($_GET['action']) && $_GET['action'] == '5'))
     {
         $title = $_POST['txt_title'];
-        $subtitle = $_POST['txt_subtitle'];
+        $price = $_POST['txt_price'];
         $description = $_POST['txt_description'];
-        $link = $_POST['txt_link'];
-        $toptitle = $_POST['txt_toptitle'];
+        // $link = $_POST['txt_link'];
+        $quantity = $_POST['txt_quantity'];
+        $discount = $_POST['txt_discount'];
         $endisble = 0;
+        
+        
         if(isset($_POST['chk_endisable']))
         {
             $endisble = 1;
@@ -27,20 +30,20 @@
             echo 'hi';
 
         
-        $rows = dbSelect('tb_slideshow', "*", "", "order by sh_order desc limit 1");
+        $rows = dbSelect('tb_product', "*", "", "order by sh_order desc limit 1");
         $row = mysqli_fetch_assoc($rows);
         $order = $row['sh_order'] + 1;
         $image_name = time() . uniqid(rand()) . ".jpg";
-        $image_path = "../images/slider/" . $image_name;
+        $image_path = "../images/product/product/" . $image_name;
         echo 'jol';
         if(move_uploaded_file($filename, $image_path))
         {
             echo 'jol';
             $image_thumbnail = image_resizeJPG($image_path, 100, 100);
-            imagejpeg($image_thumbnail, "../images/slider/thumbnail/" . $image_name);
-            $data = ['title' => $title , 'subtitle' => $subtitle, 'text' => $description , 'link' => $link , 'image' => $image_name , 'toptitle'=> $toptitle, 'sh_order' => $order, 'active' => $endisble];
-            dbInsert('tb_slideshow', $data);
-            header('location: index.php?p=slideshow');
+            imagejpeg($image_thumbnail, "../images/product/product/" . $image_name);
+            $data = ['pro_price' => $price , 'pro_discount' => $discount, 'pro_quantity' => $quantity,'pro_des' => $description  , 'pro_img' => $image_name , 'pro_title'=> $title,  'active' => $endisble, 'sh_order' => $order];
+            dbInsert('tb_product', $data);
+            header('location: index.php?p=product');
         }
     }
    
@@ -52,7 +55,7 @@
         $subtitle = $_POST['txt_subtitle'];
         $description = $_POST['txt_description'];
         $link = $_POST['txt_link'];
-        $toptitle = $_POST['txt_toptitle'];
+        // $toptitle = $_POST['txt_toptitle'];
         $endisble = 0;
         $image_name = "";
         if(isset($_POST['chk_endisable']))
@@ -122,28 +125,38 @@
 ?>
 
 
-<form class="container" action="index.php?p=slideshowform&action=<?=$action?>" enctype="multipart/form-data"
+<form class="container" action="index.php?p=productform&action=<?=$action?>" enctype="multipart/form-data"
     method="POST">
     <div class="form-group">
-        <h2>Slideshow</h2>
+        <h2>Product</h2>
         <input type="text" name="txt_title" class="form-control" value="<?=$title?>" id="exampleInputEmail1"
-            placeholder="Title" required>
+            placeholder="Product Title" required>
     </div>
     <div class="form-group">
 
-        <input type="text" name="txt_subtitle" class="form-control" id="exampleInputPassword1" placeholder="subTitle"
-            value="<?=$subtitle?>" required>
+        <input type="number" name="txt_price" class="form-control" id="exampleInputPassword1" placeholder="Price" min=0
+            value="<?=$price?>" required>
+    </div>
+    <div class="form-group">
+
+        <input type="number" name="txt_quantity" class="form-control" id="exampleInputPassword1" placeholder="Quantity"
+            min=1 value="<?=$quantity?>" required>
+    </div>
+    <div class="form-group">
+
+        <input type="number" name="txt_discount" class="form-control" id="exampleInputPassword1" placeholder="discount"
+            min=0 value="<?=$discount?>" required>
     </div>
     <div class="form-group">
 
         <textarea class="form-control" name="txt_description" id="exampleFormControlTextarea1" rows="3"
             placeholder="Description" required> <?=$description?></textarea>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
 
         <input type="text" class="form-control" name="txt_toptitle" id="exampleInputPassword1" placeholder="TopTitle"
             required value="<?=$toptitle?>">
-    </div>
+    </div> -->
     <div class="form-group">
 
         <input type="text" class="form-control" value="<?=$link?>" name="txt_link" id="exampleInputPassword1"

@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
+<?php
 
-<head>
-    <?php include("./includes/head.php"); 
+     ob_start();
+  
+    //  include("./includes/head.php"); 
+
      $conn = mysqli_connect('127.0.0.1', 'root','', 'rupp');	
 	if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -42,8 +43,38 @@
     }
     mysqli_close($conn);
     
+
+    // email subscription
+    // $conn = dbConn();
+    if (isset($_POST['email']))
+    {
+
+        $conn = mysqli_connect('127.0.0.1', 'root','', 'rupp');	
+	    if (mysqli_connect_errno()) {
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		    exit();
+	    }
+         $email = $_POST['email'];
+         $data = ['email' => $email];
+         echo $email;
+         $query = "INSERT INTO tb_subscription (email) VALUES ('$email')";
+         $result = mysqli_query($conn, $query);
+
+        if(!$result)
+         {
+        die("Retriving Query Error <br>". $query);
+         }
+        //  dbInsert('tb_subscription', $data);
+        // $rows = dbSelect('tb_slideshow','*', "sh_id = $sh_id", "");
+
+         
+         header('location: index.php?p=home');
+        //  exit();
+        
+    }
+    
     ?>
-</head>
+
 
 <body class="config">
     <div class="preloader is-active">
@@ -418,10 +449,11 @@
                                             <p class="new-l__p1">Sign up for emails to get the scoop on new arrivals,
                                                 special sales and more.</p>
                                         </div>
-                                        <form class="new-l__form">
+                                        <form class="new-l__form" method="post">
                                             <div class="u-s-m-b-15">
 
-                                                <input class="news-l__input" type="text" placeholder="E-mail Address">
+                                                <input class="news-l__input" type="email" name="email"
+                                                    placeholder="E-mail Address">
                                             </div>
                                             <div class="u-s-m-b-15">
 

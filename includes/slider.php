@@ -12,22 +12,23 @@
                 <div class="row">
                     <div class="col-12">
                         <?php
+                        $i=0;
                        while($row=mysqli_fetch_row($rows))
                         {
                         // foreach($rows as row){
                     ?>
-                        <div class="slider-content slider-content--animation">
+                        <div class="slider-content slider-content--animation <?php echo $i==0 ? 'active': '';?>">
 
                             <span class="content-span-1 u-c-secondary"><?=$row[0]?></span>
 
-                            <!-- <span class="content-span-2 u-c-secondary"><?=$row[2]?></span> -->
+                            <span class="content-span-2 u-c-secondary"><?=$row[2]?></span>
 
-                            <!-- <span class="content-span-3 u-c-secondary"><?=$row[3]?></span>
+                            <span class="content-span-3 u-c-secondary"><?=$row[3]?></span>
 
                             <span class="content-span-4 u-c-secondary">Starting At
 
                                 <span class="u-c-brand"><?=$row[4]?></span></span>
-                            -->
+
                             <!-- <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html"><?=$row[4]?></a>   -->
 
                             <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html"><?=$row[5]?></a>
@@ -35,6 +36,7 @@
 
                         </div>
                         <?php
+                        $i++;
                        }
                         ?>
                     </div>

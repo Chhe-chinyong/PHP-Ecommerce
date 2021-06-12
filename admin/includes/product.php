@@ -60,13 +60,13 @@
     <!-- < DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Product list</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <a href="index.php?p=slideshowform" type="button" class="btn btn-primary"
+                <a href="index.php?p=productform" type="button" class="btn btn-primary"
                     style="float:right;color:white; margin:1rem 0">Add new
-                    slideshow</a>
+                    Product</a>
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -131,7 +131,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Do you want to delete this slideshow?
+                                                Do you want to delete this prodcut?
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -158,4 +158,3 @@
     </div>
 
 </div>
-<!-- /.container-fluid -->

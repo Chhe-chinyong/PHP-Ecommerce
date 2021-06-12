@@ -1,6 +1,7 @@
 <?php 
   
     include_once "../includes/config.php";
+    include_once "../includes/db.php";
     $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);	
 	if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -34,6 +35,8 @@
     //      }
     // }
     mysqli_close($conn);
+    $rows = dbSelect("tb_subscription","*","", "");
+    
 ?>
 
 <div class="container-fluid">
@@ -132,4 +135,42 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Email Id</th>
+                            <th>Email </th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php
+                            $i=1;
+                            foreach($rows as $row)
+                            {                      
+                                      
+                        ?>
+                        <tr>
+                            <td><?=$row['email_id']?></td>
+                            <td><?=$row['email']?></td>
+
+                        </tr>
+
+                        <?php
+                           $i++;
+                            }           
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+</div>
+<!-- /.container-fluid -->
+</div>
