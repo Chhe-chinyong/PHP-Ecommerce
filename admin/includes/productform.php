@@ -39,7 +39,7 @@
         if(move_uploaded_file($filename, $image_path))
         {
             echo 'jol';
-            $image_thumbnail = image_resizeJPG($image_path, 100, 100);
+            $image_thumbnail = image_resizeJPG($image_path, 600, 600);
             imagejpeg($image_thumbnail, "../images/product/product/" . $image_name);
             $data = ['pro_price' => $price , 'pro_discount' => $discount, 'pro_quantity' => $quantity,'pro_des' => $description  , 'pro_img' => $image_name , 'pro_title'=> $title,  'active' => $endisble, 'sh_order' => $order];
             dbInsert('tb_product', $data);

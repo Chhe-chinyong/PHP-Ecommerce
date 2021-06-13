@@ -22,11 +22,7 @@
                 unlink("../images/slider/" . $image);
                 unlink("../images/slider/thumbnail/" . $image);
                 header("location: index.php?p=slideshow");
-                break;
-
-        
-       
-       
+                break; 
        
        
             case "2":
@@ -51,7 +47,7 @@
 
 
 
-    $rows = dbSelect("tb_slideshow","*","", "order by sh_order asc");
+    $rows = dbSelect("tb_product","*","", "order by sh_order asc");
     
 ?>
 
@@ -70,12 +66,15 @@
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>ID</th>
                             <th>Image</th>
                             <th>Title</th>
-                            <th>Subtitle</th>
-                            <th>Text</th>
-                            <th>Link</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Discount</th>
+                            
+                           
                             <th>Action</th>
 
                         </tr>
@@ -92,19 +91,25 @@
                         <tr>
 
 
-
                             <td><?=$i?></td>
-                            <td><img src="../images/slider/thumbnail/<?=$row['image']?>" style="width:75px"></td>
-                            <td><?=$row['title']?></td>
-                            <td style="max-width:200px;"><?=$row['subtitle']?></td>
-                            <td><?=$row['text']?></td>
-                            <td><?=$row['link']?></td>
+                            <!-- <td><img src='../images/slider/thumbnail/<?=$row['image']?>'> </td> -->
+                            <!-- <td> <img src='../images/product/product/<?=$row['pro_img']?>' alt="logo" style="width:45px"> </td> -->
+                            <td> <img src='../images/product/product/<?=$row['pro_img']?>' alt="logo" style="width:45px"> </td>
+
+                            <td><?=$row['pro_title']?></td>
+                            <td><?=$row['pro_price']?></td>
+                            <td style="width:10px"><?=$row['pro_des']?></td>
+                            <td><?=$row['pro_quantity']?></td>
+                            <td><?=$row['pro_discount']?></td>
+
+                           
+                            <!-- <td><?=$row['link']?></td> -->
                             <td class="table-action" style="height:100px">
                                 <a href=""><i class="fas fa-arrow-up"></i></a>
                                 <a href=""><i class="fas fa-arrow-down"></i></a>
-                                <a href="?p=slideshow&action=2&id=<?=$row['sh_id']?>"><i
+                                <a href="?p=productform&action=2&id=<?=$row['pro_id']?>"><i
                                         class=" <?php echo($row['active'] == 1 ) ? "fas fa-eye": "fas fa-eye-slash"?> "></i></a>
-                                <a href="index.php?p=slideshowform&action=1&id=<?=$row['sh_id']?>"><i
+                                <a href="index.php?p=productform&action=1&id=<?=$row['pro_id']?>"><i
                                         class="far fa-edit"></i></a>
                                 <!-- <a href="?p=slideshow&action=0&id=<?=$row['sh_id']?>"><i
                                         class="far fa-trash-alt"></i></a> -->
@@ -113,12 +118,12 @@
                                 <!-- Button trigger modal -->
 
                                 <a style="cursor:pointer; color:blue" data-toggle="modal"
-                                    data-target="#slideshow<?=$row['sh_id']?>">
+                                    data-target="#slideshow<?=$row['pro_id']?>">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="slideshow<?=$row['sh_id']?>" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="slideshow<?=$row['pro_id']?>" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -136,8 +141,9 @@
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <a class="btn btn-primary"
-                                                    href="?p=slideshow&action=0&id=<?=$row['sh_id']?>">Delete</a>
+                                                    href="?p=slideshow&action=0&id=<?=$row['pro_id']?>">Delete</a>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
