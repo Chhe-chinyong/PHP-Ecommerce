@@ -19,5 +19,6 @@
 
     <!--====== App ======-->
     <link rel="stylesheet" href="css/app.css">
+    <!-- Latest compiled and minified CSS -->
 
 </head>

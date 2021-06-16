@@ -243,7 +243,7 @@
                                 <div class="success u-s-m-b-30">
                                     <div class="success__text-wrap"><i class="fas fa-check"></i>
 
-                                        <span>Item is added successfully!</span></div>
+                                        <span>Item is added successfully1!</span></div>
                                     <div class="success__img-wrap">
 
                                         <img class="u-img-fluid" src="images/product/electronic/product1.jpg" alt=""></div>

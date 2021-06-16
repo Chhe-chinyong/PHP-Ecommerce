@@ -30,7 +30,7 @@
         // $total_visitor = mysqli_num_rows($result);
         $total_visitor = mysqli_fetch_array($result1, MYSQLI_NUM)[0];
         $total = mysqli_fetch_array($result, MYSQLI_NUM)[0];
-        echo $total_visitor;
+       
         if($total < 1)
          {
              $query = "INSERT INTO counter_table (ip_address) VALUES ('$visitor_ip')";

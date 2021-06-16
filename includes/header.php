@@ -1,6 +1,7 @@
 <?php
     ob_start();
-
+    session_start();
+    $total = 0;
     $conn = mysqli_connect('127.0.0.1', 'root','', 'rupp');	
 	if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -38,6 +39,23 @@
     //      }
     // }
     mysqli_close($conn);
+
+    if(isset($_GET["action"]))
+{
+	if($_GET["action"] == "delete")
+	{
+		foreach($_SESSION["shopping_cart"] as $keys => $values)
+		{
+			if($values["item_id"] == $_GET["id"])
+			{
+				unset($_SESSION["shopping_cart"][$keys]);
+				echo '<script>alert("Item Removed")</script>';
+				echo '<script>window.location="index.php?page=productItem"</script>';
+			}
+		}
+	}
+}
+
     
 ?>
 
@@ -1264,6 +1282,14 @@
                                     <div class="mini-product-container gl-scroll u-s-m-b-15">
 
                                         <!--====== Card for mini cart ======-->
+                                        <?php
+                                            if(!empty($_SESSION["shopping_cart"]))
+                                            {
+                                                echo 'hi';
+                                                $total = 0;
+                                                foreach($_SESSION["shopping_cart"] as $keys => $values)
+                                                {
+				                    	?>
                                         <div class="card-mini-product">
                                             <div class="mini-product">
                                                 <div class="mini-product__image-wrapper">
@@ -1271,7 +1297,7 @@
                                                     <a class="mini-product__link" href="product-detail.html">
 
                                                         <img class="u-img-fluid"
-                                                            src="images/product/electronic/product3.jpg" alt=""></a>
+                                                        src="images/product/product/<?=$values['item_image']?>" style="height:80px; width:100%" alt=""></a>
                                                 </div>
                                                 <div class="mini-product__info-wrapper">
 
@@ -1281,113 +1307,26 @@
 
                                                     <span class="mini-product__name">
 
-                                                        <a href="product-detail.html">Yellow Wireless
-                                                            Headphone</a></span>
+                                                        <a href="product-detail.html"><?php echo $values["item_name"]; ?></a></span>
 
                                                     <span class="mini-product__quantity">1 x</span>
 
-                                                    <span class="mini-product__price">$8</span>
+                                                    <span class="mini-product__price">$<?php echo $values["item_price"]; ?></span>
                                                 </div>
                                             </div>
 
-                                            <a class="mini-product__delete-link far fa-trash-alt"></a>
+                                            <a class="far fa-trash-alt table-p__delete-link" href="?page=productItem&action=delete&id=<?php echo $values["item_id"]; ?>"></a>
                                         </div>
+                                        <?php
+							                 $total = $total + ($values["item_quantity"] * $values["item_price"]);
+						                }?>
+
+<?php
+					}
+					?>
                                         <!--====== End - Card for mini cart ======-->
 
 
-                                        <!--====== Card for mini cart ======-->
-                                        <div class="card-mini-product">
-                                            <div class="mini-product">
-                                                <div class="mini-product__image-wrapper">
-
-                                                    <a class="mini-product__link" href="product-detail.html">
-
-                                                        <img class="u-img-fluid"
-                                                            src="images/product/electronic/product18.jpg" alt=""></a>
-                                                </div>
-                                                <div class="mini-product__info-wrapper">
-
-                                                    <span class="mini-product__category">
-
-                                                        <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                                    <span class="mini-product__name">
-
-                                                        <a href="product-detail.html">Nikon DSLR Camera 4k</a></span>
-
-                                                    <span class="mini-product__quantity">1 x</span>
-
-                                                    <span class="mini-product__price">$8</span>
-                                                </div>
-                                            </div>
-
-                                            <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                        </div>
-                                        <!--====== End - Card for mini cart ======-->
-
-
-                                        <!--====== Card for mini cart ======-->
-                                        <div class="card-mini-product">
-                                            <div class="mini-product">
-                                                <div class="mini-product__image-wrapper">
-
-                                                    <a class="mini-product__link" href="product-detail.html">
-
-                                                        <img class="u-img-fluid" src="images/product/women/product8.jpg"
-                                                            alt=""></a>
-                                                </div>
-                                                <div class="mini-product__info-wrapper">
-
-                                                    <span class="mini-product__category">
-
-                                                        <a href="shop-side-version-2.html">Women Clothing</a></span>
-
-                                                    <span class="mini-product__name">
-
-                                                        <a href="product-detail.html">New Dress D Nice
-                                                            Elegant</a></span>
-
-                                                    <span class="mini-product__quantity">1 x</span>
-
-                                                    <span class="mini-product__price">$8</span>
-                                                </div>
-                                            </div>
-
-                                            <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                        </div>
-                                        <!--====== End - Card for mini cart ======-->
-
-
-                                        <!--====== Card for mini cart ======-->
-                                        <div class="card-mini-product">
-                                            <div class="mini-product">
-                                                <div class="mini-product__image-wrapper">
-
-                                                    <a class="mini-product__link" href="product-detail.html">
-
-                                                        <img class="u-img-fluid" src="images/product/men/product8.jpg"
-                                                            alt=""></a>
-                                                </div>
-                                                <div class="mini-product__info-wrapper">
-
-                                                    <span class="mini-product__category">
-
-                                                        <a href="shop-side-version-2.html">Men Clothing</a></span>
-
-                                                    <span class="mini-product__name">
-
-                                                        <a href="product-detail.html">New Fashion D Nice
-                                                            Elegant</a></span>
-
-                                                    <span class="mini-product__quantity">1 x</span>
-
-                                                    <span class="mini-product__price">$8</span>
-                                                </div>
-                                            </div>
-
-                                            <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                        </div>
-                                        <!--====== End - Card for mini cart ======-->
                                     </div>
                                     <!--====== End - Mini Product Container ======-->
 
@@ -1398,7 +1337,7 @@
 
                                             <span class="subtotal-text">SUBTOTAL</span>
 
-                                            <span class="subtotal-value">$16</span>
+                                            <span class="subtotal-value">$<?php echo $total; ?></span>
                                         </div>
                                         <div class="mini-action">
 

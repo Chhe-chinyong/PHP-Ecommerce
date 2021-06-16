@@ -1,5 +1,49 @@
 <?php
        include "db.php";
+       
+    //    session_start();
+       ob_start();
+        // Add to cart 
+        if(isset($_POST["add_to_cart"]))
+        {
+
+	if(isset($_SESSION["shopping_cart"]))
+	{
+       
+		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+		if(!in_array($_GET["id"], $item_array_id))
+		{
+			$count = count($_SESSION["shopping_cart"]);
+			$item_array = array(
+				'item_id'			=>	$_GET["id"],
+				'item_name'			=>	$_POST["hidden_name"],
+				'item_price'		=>	$_POST["hidden_price"],
+				'item_quantity'		=>	$_POST["quantity"],
+                'item_image'        =>  $_POST['hidden_img']
+ 			);
+			$_SESSION["shopping_cart"][$count] = $item_array;
+		}
+		else
+		{
+			// echo '<script>alert("Item Already Added")</script>';
+            echo '<script>window.location="index.php?page=productItem"</script>';
+		}
+	}
+	else
+	{
+		$item_array = array(
+			'item_id'			=>	$_GET["id"],
+			'item_name'			=>	$_POST["hidden_name"],
+			'item_price'		=>	$_POST["hidden_price"],
+			'item_quantity'		=>	$_POST["quantity"],
+            'item_image'        =>  $_POST['hidden_img']
+		);
+		$_SESSION["shopping_cart"][0] = $item_array;
+        // echo '<script>window.location="index.php?page=productItem"</script>';
+
+	}
+}
+
        $rows = dbSelect("tb_product","*","");
 ?>
 
@@ -45,6 +89,9 @@
                                         </form>
                                     </div>
                                 </div>
+                                
+
+
                                 <div class="shop-p__collection">
                                     <div class="row is-grid-active">
                                     <?php
@@ -52,10 +99,14 @@
                                      while($row=mysqli_fetch_row($rows))
                                         {
                                              ?>
+
+
                                         <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <form method="post" action="?page=productItem&action=add&id=<?php echo $row[0]; ?>">
+
                                             <div class="product-m">
                                                 <div class="product-m__thumb">
-
+                                                
                                                     <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
 
                                                         <img class="aspect__img" src="images/product/product/<?=$row[6]?>" alt=""></a>
@@ -63,8 +114,10 @@
 
                                                         <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>
                                                     <div class="product-m__add-cart">
-
-                                                        <a class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>
+                                                    <!-- <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" /> -->
+                                                        <input type="submit" name="add_to_cart"  style="margin-top:5px;"  class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart<?php echo $row[0];?>" value="Add to cart" /> 
+                                                    </div>
+                                                        <!-- href="?p=productItem&action=2&id=<?=$row[0]?>" -->
                                                 </div>
                                                 <div class="product-m__content">
                                                     <div class="product-m__category">
@@ -76,7 +129,7 @@
                                                     <div class="product-m__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
 
                                                         <span class="product-m__review">(23)</span></div>
-                                                    <div class="product-m__price">$<?=$row[1]?></div>
+                                                    <div class="product-m__price" name="hidden_price" >$<?=$row[1]?></div>
                                                     <div class="product-m__hover">
                                                         <div class="product-m__preview-description">
 
@@ -85,8 +138,18 @@
 
                                                             <a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>
                                                     </div>
+
+                                                    
+						                <input type="hidden" name="quantity" value="1" class="form-control" />
+
+                                        <input type="hidden" name="hidden_name" value="<?php echo $row[5]; ?>" />
+
+                                        <input type="hidden" name="hidden_price" value="<?php echo $row[1]; ?>" />
+                                        <input type="hidden" name="hidden_img" value="<?php echo $row[6]; ?>" />
+
                                                 </div>
                                             </div>
+                                        </form>
                                         </div>
 
                                         

@@ -8,6 +8,9 @@
  * p means padding. e.g. `u-s-m-t-22` means apply top margin 22 pixels that by default converted to rem unit.
  */
 /* Margin with value `auto`. */
+.hero-slide--1 {
+  background-image: url(../images/slider/slide-2.jpg);
+}
 label {
   display: none;
 }
