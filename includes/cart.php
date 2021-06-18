@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 $total = 0;
 if(isset($_GET["action"]))
 {
@@ -67,7 +67,7 @@ $_SESSION["shopping_cart"][0] = $item_array;
                 <ul class="breadcrumb__list">
                     <li class="has-separator">
 
-                        <a href="index.html">Home</a></li>
+                        <a href="index.php?page=home">Home</a></li>
                     <li class="is-marked">
 
                         <a href="cart.html">Cart</a></li>

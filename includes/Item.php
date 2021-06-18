@@ -22,11 +22,19 @@
                 'item_image'        =>  $_POST['hidden_img']
  			);
 			$_SESSION["shopping_cart"][$count] = $item_array;
+            echo '<script>alert("Item Added")</script>';
+			echo '<script>window.location="index.php?page=productItem"</script>';
 		}
 		else
 		{
+
 			// echo '<script>alert("Item Already Added")</script>';
-            echo '<script>window.location="index.php?page=productItem"</script>';
+            // echo '<script>window.location="index.php?page=productItem"</script>';
+            // echo '<script>alert("Item Already Added")</script>';
+            // echo '<script>alert("Item Removed")</script>';
+            // echo '<script>window.location="productitem.php"</script>';
+            echo '<script>alert("Item Added")</script>';
+			echo '<script>window.location="index.php?page=productItem"</script>';
 		}
 	}
 	else
@@ -39,12 +47,14 @@
             'item_image'        =>  $_POST['hidden_img']
 		);
 		$_SESSION["shopping_cart"][0] = $item_array;
-        // echo '<script>window.location="index.php?page=productItem"</script>';
+        echo '<script>location.reload();</script>';
+        echo '<script>alert("Item Already Added")</script>';
+        echo '<script>window.location="index.php?page=productItem"</script>';
 
 	}
 }
 
-       $rows = dbSelect("tb_product","*","");
+       $rows = dbSelect("tb_product","*","active=1");
 ?>
 
 <div class="col-lg-9 col-md-12">

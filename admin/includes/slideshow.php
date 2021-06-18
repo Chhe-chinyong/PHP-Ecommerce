@@ -7,9 +7,9 @@
         switch($action)
         {
             case "0":
-                $sh_id = $_GET['id'];
-                echo $sh_id;
-                $rows = dbSelect('tb_slideshow',"*","sh_id= $sh_id","");
+                $pro_id = $_GET['id'];
+                // echo $sh_id;
+                $rows = dbSelect('tb_product',"*","pro_id= $pro_id","");
                 echo"hi";
                 foreach($rows as $row)
                 {
@@ -18,10 +18,10 @@
                    
                 }
             
-                dbDelete('tb_slideshow',"sh_id=$sh_id");
-                unlink("../images/slider/" . $image);
-                unlink("../images/slider/thumbnail/" . $image);
-                header("location: index.php?p=slideshow");
+                dbDelete('tb_product',"pro_id=$pro_id");
+                unlink("../images/product/product" . $image);
+                // unlink("../images/slider/thumbnail/" . $image);
+                header("location: index.php?p=product");
                 break;
 
         
@@ -136,7 +136,7 @@
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <a class="btn btn-primary"
-                                                    href="?p=slideshow&action=0&id=<?=$row['sh_id']?>">Delete</a>
+                                                    href="?p=slideshow&action=0&id=<?=$row['pro_id']?>">Delete</a>
                                             </div>
                                         </div>
                                     </div>

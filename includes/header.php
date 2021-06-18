@@ -7,15 +7,21 @@
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		exit();
 	}
-	
- 
-    
+	  
     $query = "SELECT * FROM tb_logo WHERE logo_id=(SELECT MAX(logo_id) FROM tb_logo);";
     $result = mysqli_query($conn, $query);
   
     if (!$result){
         die ("Database connection failed!");
   }
+  $items_in_cart = 0;
+
+if(isset($_SESSION["shopping_cart"]))
+{
+  $items_in_cart = count($_SESSION['shopping_cart']);
+}
+//   echo $items_in_cart;
+
     // checking query error 
     // if(!$result)
     // {
@@ -1250,7 +1256,7 @@
                         class="btn btn--icon toggle-button toggle-button--secondary fas fa-shopping-bag toggle-button-shop"
                         type="button"></button>
 
-                    <span class="total-item-round">2</span>
+                    <span class="total-item-round"></span>
 
                     <!--====== Menu ======-->
                     <div class="ah-lg-mode">
@@ -1271,7 +1277,7 @@
 
                                 <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
 
-                                    <span class="total-item-round">2</span></a>
+                                    <span class="total-item-round"><?php echo $items_in_cart; ?></span></a>
 
                                 <!--====== Dropdown ======-->
 
@@ -1341,10 +1347,10 @@
                                         </div>
                                         <div class="mini-action">
 
-                                            <a class="mini-link btn--e-brand-b-2" href="checkout.php">PROCEED TO
+                                            <a class="mini-link btn--e-brand-b-2" href="index.php?page=checkout">PROCEED TO
                                                 CHECKOUT</a>
 
-                                            <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.php">VIEW
+                                            <a class="mini-link btn--e-transparent-secondary-b-2" href="index.php?page=cart">VIEW
                                                 CART</a>
                                         </div>
                                     </div>

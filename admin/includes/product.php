@@ -26,8 +26,8 @@
        
        
             case "2":
-                $sh_id = $_GET['id'];
-                $rows = dbSelect('tb_slideshow','*', "sh_id = $sh_id", "");
+                $pro_id = $_GET['id'];
+                $rows = dbSelect('tb_product','*', "pro_id = $pro_id", "");
                 $active = 0;
                 foreach($rows as $row){
                     $active = $row['active'];
@@ -39,8 +39,8 @@
                 else {
                     $active = 0;
                 }
-                dbUpdate("tb_slideshow", $data=['active' => $active], "sh_id = $sh_id");
-                header("location: index.php?p=slideshow");
+                dbUpdate("tb_product", $data=['active' => $active], "pro_id = $pro_id");
+                header("location: index.php?p=product");
             
             }
     }
@@ -107,8 +107,10 @@
                             <td class="table-action" style="height:100px">
                                 <a href=""><i class="fas fa-arrow-up"></i></a>
                                 <a href=""><i class="fas fa-arrow-down"></i></a>
-                                <a href="?p=productform&action=2&id=<?=$row['pro_id']?>"><i
+                                <a href="?p=product&action=2&id=<?=$row['pro_id']?>"><i
                                         class=" <?php echo($row['active'] == 1 ) ? "fas fa-eye": "fas fa-eye-slash"?> "></i></a>
+                                       
+
                                 <a href="index.php?p=productform&action=1&id=<?=$row['pro_id']?>"><i
                                         class="far fa-edit"></i></a>
                                 <!-- <a href="?p=slideshow&action=0&id=<?=$row['sh_id']?>"><i

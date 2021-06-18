@@ -38,8 +38,7 @@
 
 
         <!--====== Main Footer ======-->
-        <?php include("./includes/footer.php"); ?>
-
+        
         <!--====== Modal Section ======-->
 
 

@@ -25,7 +25,7 @@
         <!-- END content -->
 
         <!--====== Main Footer ======-->
-        <?php include("./includes/footer.php"); ?>
+        <!-- <?php include("./includes/footer.php"); ?> -->
         <!--====== End footer======-->
 
 

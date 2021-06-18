@@ -409,7 +409,7 @@
                                             <a class="s-option__link btn--e-white-brand-shadow"
                                                 data-dismiss="modal">CONTINUE SHOPPING</a>
 
-                                            <a class="s-option__link btn--e-white-brand-shadow" href="cart.php">VIEW
+                                            <a class="s-option__link btn--e-white-brand-shadow" href="index.php?page=cart">VIEW
                                                 CART</a>
 
                                             <a class="s-option__link btn--e-brand-shadow" href="checkout.php">PROCEED TO

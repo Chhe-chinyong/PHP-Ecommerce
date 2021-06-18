@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-<?php include("./includes/head.php"); ?>
+<?php 
+ob_start();  
+include("./includes/head.php"); ?>
 
 <body class="config">
     <div class="preloader is-active">
