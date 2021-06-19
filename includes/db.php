@@ -42,6 +42,9 @@ function dbSelect($table, $column, $criteria="", $clause=""){
 	return $row;
 }	
 
+
+
+
 function dbInsert($table, $data=array()){
 
 	if(empty($table) || empty($data)) 
@@ -59,6 +62,29 @@ function dbInsert($table, $data=array()){
 		return false;
 	}
 	return true;
+}	
+
+
+function dbInsert1($table, $data=array()){
+
+	if(empty($table) || empty($data)) 
+	{ 
+		return false;
+	}
+	$fields = implode(',',array_keys($data));
+	$values = implode("','",array_values($data));
+	$sql = "insert into " . $table ." (" .$fields .") values ('" . $values ."')";
+	$conn = dbConn();
+	$result = mysqli_query($conn,$sql);
+	
+	if (!$result) {
+		echo("Error description: " . mysqli_error($conn));
+		return false;
+	}
+	$id = mysqli_insert_id($conn);
+	dbClose($conn);
+	return $id;
+	
 }	
 
 function dbUpdate($table, $data=array(), $criteria=""){

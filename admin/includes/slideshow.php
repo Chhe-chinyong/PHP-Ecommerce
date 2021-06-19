@@ -7,9 +7,9 @@
         switch($action)
         {
             case "0":
-                $pro_id = $_GET['id'];
+                $sh_id = $_GET['id'];
                 // echo $sh_id;
-                $rows = dbSelect('tb_product',"*","pro_id= $pro_id","");
+                $rows = dbSelect('tb_product',"*","pro_id= $sh_id","");
                 echo"hi";
                 foreach($rows as $row)
                 {
@@ -18,10 +18,10 @@
                    
                 }
             
-                dbDelete('tb_product',"pro_id=$pro_id");
+                dbDelete('tb_slideshow',"sh_id=$sh_id");
                 unlink("../images/product/product" . $image);
                 // unlink("../images/slider/thumbnail/" . $image);
-                header("location: index.php?p=product");
+                header("location: index.php?p=slideshow");
                 break;
 
         
@@ -60,7 +60,7 @@
     <!-- < DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Slideshow</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -135,8 +135,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <a class="btn btn-primary"
-                                                    href="?p=slideshow&action=0&id=<?=$row['pro_id']?>">Delete</a>
+                                                <a class="btn btn-primary" href="?p=slideshow&action=0&id=<?=$row['sh_id']?>">Delete</a>
                                             </div>
                                         </div>
                                     </div>

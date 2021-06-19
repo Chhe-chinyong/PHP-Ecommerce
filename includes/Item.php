@@ -57,7 +57,7 @@
        $rows = dbSelect("tb_product","*","active=1");
 ?>
 
-<div class="col-lg-9 col-md-12">
+<div class="col-lg-12 col-md-12">
                             <div class="shop-p">
                                 <div class="shop-p__toolbar u-s-m-b-30">
                                     <div class="shop-p__meta-wrap u-s-m-b-60">
@@ -111,7 +111,7 @@
                                              ?>
 
 
-                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
                                         <form method="post" action="?page=productItem&action=add&id=<?php echo $row[0]; ?>">
 
                                             <div class="product-m">

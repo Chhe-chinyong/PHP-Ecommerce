@@ -1,6 +1,5 @@
 <?php
     ob_start();  
-    // session_start();
     $message ="";
       include('db.php'); 
       if (isset($_POST['username']))

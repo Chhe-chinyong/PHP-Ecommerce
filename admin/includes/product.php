@@ -7,9 +7,9 @@
         switch($action)
         {
             case "0":
-                $sh_id = $_GET['id'];
-                echo $sh_id;
-                $rows = dbSelect('tb_slideshow',"*","sh_id= $sh_id","");
+                $pro_id = $_GET['id'];
+                echo $pro_id;
+                $rows = dbSelect('tb_product',"*","pro_id= $pro_id","");
                 echo"hi";
                 foreach($rows as $row)
                 {
@@ -18,10 +18,10 @@
                    
                 }
             
-                dbDelete('tb_slideshow',"sh_id=$sh_id");
+                dbDelete('tb_product',"pro_id=$pro_id");
                 unlink("../images/slider/" . $image);
                 unlink("../images/slider/thumbnail/" . $image);
-                header("location: index.php?p=slideshow");
+                header("location: index.php?p=product");
                 break; 
        
        
@@ -104,9 +104,8 @@
 
                            
                             <!-- <td><?=$row['link']?></td> -->
-                            <td class="table-action" style="height:100px">
-                                <a href=""><i class="fas fa-arrow-up"></i></a>
-                                <a href=""><i class="fas fa-arrow-down"></i></a>
+                            <td class="table-action" style="height:150px">
+                               
                                 <a href="?p=product&action=2&id=<?=$row['pro_id']?>"><i
                                         class=" <?php echo($row['active'] == 1 ) ? "fas fa-eye": "fas fa-eye-slash"?> "></i></a>
                                        
@@ -143,7 +142,7 @@
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <a class="btn btn-primary"
-                                                    href="?p=slideshow&action=0&id=<?=$row['pro_id']?>">Delete</a>
+                                                    href="?p=product&action=0&id=<?=$row['pro_id']?>">Delete</a>
                                             </div>
 
                                         </div>

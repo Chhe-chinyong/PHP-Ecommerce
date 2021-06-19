@@ -161,5 +161,5 @@
             <?php if($imagerequired == 1) {echo "required = 'required'";}?> />
     </div>
     <button type="submit" class="btn btn-primary"><?=$but?></button>
-    <button type="reset" class="btn btn-primary" value="clear">Cancel</button>
+    <button type="reset" class="btn btn-primary" value="clear"><a href="index.php?p=slideshow" style="color:white">Cancel </a></button>
 </form>

@@ -133,11 +133,7 @@
             placeholder="link" required>
     </div>
 
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" <?php echo ($endisble==0) ? '': 'checked'?> id="exampleCheck1"
-            name="chk_endisable">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
+    
     <div class="form-group">
 
         <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1"

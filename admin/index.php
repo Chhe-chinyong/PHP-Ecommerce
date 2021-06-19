@@ -32,6 +32,12 @@ include_once('includes/navbar.php');
                         case "logo":
                             $page = 'includes/logo.php';
                             break;
+                            case "order":
+                                $page = 'includes/order.php';
+                                break;
+                                case "report":
+                                    $page = 'includes/report.php';
+                                    break;
         }
     }
 

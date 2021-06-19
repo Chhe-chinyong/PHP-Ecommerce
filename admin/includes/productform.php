@@ -153,7 +153,6 @@
             placeholder="Description" required> <?=$description?></textarea>
     </div>
     <!-- <div class="form-group">
-
         <input type="text" class="form-control" name="txt_toptitle" id="exampleInputPassword1" placeholder="TopTitle"
             required value="<?=$toptitle?>">
     </div> -->

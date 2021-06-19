@@ -11,7 +11,7 @@
                         $i=0;
                        while($row=mysqli_fetch_row($rows))
                         {
-                            // echo $i;
+                      
                     ?>
         <div class="hero-slide hero-slide--<?=$i?>">
             <div class="container">
@@ -20,19 +20,19 @@
                         
                         <div class="slider-content slider-content--animation <?php echo $i==0 ? 'active': '';?>">
 
-                            <span class="content-span-1 u-c-secondary"><?=$row[0]?></span>
+                            <span class="content-span-1 u-c-secondary"><?=$row[6]?></span>
 
-                            <span class="content-span-2 u-c-secondary"><?=$row[2]?></span>
+                            <span class="content-span-2 u-c-secondary"><?=$row[1]?></span>
 
                             <span class="content-span-3 u-c-secondary"><?=$row[3]?></span>
-
+<!-- 
                             <span class="content-span-4 u-c-secondary">Starting At
 
-                                <span class="u-c-brand"><?=$row[4]?></span></span>
+                                <span class="u-c-brand"><?=$row[4]?></span></span> -->
 
                             <!-- <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html"><?=$row[4]?></a>   -->
 
-                            <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html"><?=$row[5]?></a>
+                            <a class="shop-now-link btn--e-brand" href="<?=$row[4]?>">Learn more</a>
 
                             <script language="javascript">
 		                       		
@@ -50,3 +50,21 @@
         ?>                
     </div>
 </div>
+
+<script type='text/javascript'>
+
+jQuery(document).ready(function($) {
+	 $('#hero-slide').owlCarousel({
+		nav: true,
+		items: 2,
+		loop: true,
+		center: true,
+		margin: 0,
+		lazyLoad:true,
+		dots: true
+	});
+ })
+
+</script>
+
+

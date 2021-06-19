@@ -16,6 +16,15 @@ if(isset($_GET["action"]))
 	}
 }
 
+if (isset($_GET["increase"])) {
+    // add is id get from checkout
+
+        if ($row['product_quantity'] != $_SESSION['product_' . $_GET["add"]]) {
+            $_SESSION['product_' . $_GET["add"]] += 1;
+            redirect("../public/checkout.php");
+        } 
+}
+
 if(isset($_POST["quantity"]))
 {
 
@@ -149,13 +158,14 @@ $_SESSION["shopping_cart"][0] = $item_array;
                                     <div class="table-p__input-counter-wrap">
 
                                         <!--====== Input Counter ======-->
-                                        <div class="input-counter">
+                                        <!-- <div class="input-counter"> -->
 
-                                            <span class="input-counter__minus fas fa-minus"></span>
-                                            <form method="POST" action="?page=cart&action=add&id=<?php echo $values["item_id"]; ?>">   
-                                                 <input class="input-counter__text input-counter--text-primary-style" name="quantity" type="text" value="<?php echo $values["item_quantity"]; ?>" onchange="this.form.submit()"  data-min="1" data-max="1000">
-                                            </form>
-                                            <span class="input-counter__plus fas fa-plus"></span></div>
+                                            <!-- <span class="input-counter__minus fas fa-minus"></span> -->
+                                            <!-- <form method="POST" action="?page=cart&action=add&id=<?php echo $values["item_id"]; ?>">    -->
+                                                 <!-- <a class="input-counter__text input-counter--text-primary-style"  href="index.php?page=cart&increase=<?php echo $values["item_id"]; ?>" data-min="1" data-max="1000"> </a> -->
+                                                 <!-- <?php echo ($_SESSION['price_total']) ?> -->
+                                            <!-- </form> -->
+                                            <!-- <span class="input-counter__plus fas fa-plus"></span></div> -->
                                         <!--====== End - Input Counter ======-->
                                     </div>
                                 </td>
@@ -222,73 +232,16 @@ $_SESSION["shopping_cart"][0] = $item_array;
             <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
                 <form class="f-cart">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                            <div class="f-cart__pad-box">
-                                <h1 class="gl-h1">ESTIMATE SHIPPING AND TAXES</h1>
-
-                                <span class="gl-text u-s-m-b-30">Enter your destination to get a shipping estimate.</span>
-                                <div class="u-s-m-b-30">
-
-                                    <!--====== Select Box ======-->
-
-                                    <label class="gl-label" for="shipping-country">COUNTRY *</label><select class="select-box select-box--primary-style" id="shipping-country">
-                                        <option selected value="">Choose Country</option>
-                                        <option value="uae">United Arab Emirate (UAE)</option>
-                                        <option value="uk">United Kingdom (UK)</option>
-                                        <option value="us">United States (US)</option>
-                                    </select>
-                                    <!--====== End - Select Box ======-->
-                                </div>
-                                <div class="u-s-m-b-30">
-
-                                    <!--====== Select Box ======-->
-
-                                    <label class="gl-label" for="shipping-state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="shipping-state">
-                                        <option selected value="">Choose State/Province</option>
-                                        <option value="al">Alabama</option>
-                                        <option value="al">Alaska</option>
-                                        <option value="ny">New York</option>
-                                    </select>
-                                    <!--====== End - Select Box ======-->
-                                </div>
-                                <div class="u-s-m-b-30">
-
-                                    <label class="gl-label" for="shipping-zip">ZIP/POSTAL CODE *</label>
-
-                                    <input class="input-text input-text--primary-style" type="text" id="shipping-zip" placeholder="Zip/Postal Code"></div>
-                                <div class="u-s-m-b-30">
-
-                                    <a class="f-cart__ship-link btn--e-transparent-brand-b-2" href="cart.html">CALCULATE SHIPPING</a></div>
-
-                                <span class="gl-text">Note: There are some countries where free shipping is available otherwise our flat rate charges or country delivery charges will be apply.</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                            <div class="f-cart__pad-box">
-                                <h1 class="gl-h1">NOTE</h1>
-
-                                <span class="gl-text u-s-m-b-30">Add Special Note About Your Product</span>
-                                <div>
-
-                                    <label for="f-cart-note"></label><textarea class="text-area text-area--primary-style" id="f-cart-note"></textarea></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                            <div class="f-cart__pad-box">
+                    <div class="col-lg-6 col-md-6 u-s-m-b-30" >
+                    </div>       
+                        <div class="col-lg-6 col-md-6 u-s-m-b-30" style="float:right">
+                            <div class="f-cart__pad-box" >
                                 <div class="u-s-m-b-30">
                                     <table class="f-cart__table">
                                         <tbody>
                                             <tr>
-                                                <td>SHIPPING</td>
-                                                <td>$4.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>TAX</td>
-                                                <td>$0.00</td>
-                                            </tr>
-                                            <tr>
                                                 <td>SUBTOTAL</td>
-                                                <td>$379.00</td>
+                                                <td>$<?php echo $total; ?></td>
                                             </tr>
                                             <tr>
                                                 <td>GRAND TOTAL</td>
@@ -302,9 +255,9 @@ $_SESSION["shopping_cart"][0] = $item_array;
                                     <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
                             </div>
                         </div>
-                    </div>
+                        </div>
                 </form>
-            </div>
+            
         </div>
     </div>
 </div>
